@@ -14,7 +14,7 @@ function validateUser (user){
             else{
                 reject("Error message")
             }
-        },2000)
+        },5000)
     })
     return validationPromise;
 }
