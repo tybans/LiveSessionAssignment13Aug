@@ -1,29 +1,43 @@
 function validateUser (user){
+
+    let {userName, Age, Email} = user;
+    console.log(user);
     const validationPromise = new Promise((resolve, reject) =>{
         setTimeout(() => {
             console.log("validating...");
-            if(userName >= "abc"){
-                resolve({userName:"Taiyab"});
-            }
-            else if(email === "@" && email === "."){
-                resolve({email:"taiyab@gmail.com"});
-            }
-            else if(age >= 18){
-                resolve({age:25});
+            // console.log(userName);
+            // console.log(Age);
+            // console.log(Email);
+            if(userName != "" && userName.length >= 3 && Age >= 18){
+
+                resolve({username: user.userName, age: user.Age, email: user.Email});
             }
             else{
-                reject("Error message")
+                reject("data not found...");
             }
-        },5000)
-    })
+        },2000);
+    });
     return validationPromise;
-}
-const validation = validateUser("Taiyab");
-validation.then((user) =>{
-    console.log(user);
+};
 
-    
-})
-validation.catch((user) =>{
-    console.log(user);
-})
+
+async function getPromise(){
+    try{
+        const validation = await validateUser({userName: "Taiyab", Age: 29, Email: "taiyab@gmail.com"});
+    console.log(validation);
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+getPromise();
+
+
+// const validation = validateUser({userName: "Taiyab", Age: 5, Email: "taiyab@gmail.com"});
+// validation.then((user) =>{
+//      console.log(user);
+
+// })
+// .catch((error) =>{
+//     console.log(error);
+// })
